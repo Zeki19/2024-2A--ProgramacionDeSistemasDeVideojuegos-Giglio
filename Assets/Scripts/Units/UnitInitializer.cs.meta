@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 3b0d88ac321e25747b5afd05899d9dfd
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - meleeUnitInfo: {fileID: 11400000, guid: 56a8e82f5701465498f32e079c9cecb6, type: 2}
+  - rangedUnitInfo: {fileID: 11400000, guid: 93d954892b1b9f84cb8c9dd4bcc0aabb, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
