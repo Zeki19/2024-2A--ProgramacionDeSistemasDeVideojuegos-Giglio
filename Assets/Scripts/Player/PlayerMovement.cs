@@ -26,7 +26,6 @@ public class PlayerMovement : MonoBehaviour
     {
         moveInput = Input.GetAxis("Horizontal");
         Move();
-        Attack();
         
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -45,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
     private RaycastHit2D _hit;
     private bool RangedCheck()
     {
-        _hit = Physics2D.Raycast(transform.position, Vector2.right, 8, 1 << 6);
+        _hit = Physics2D.Raycast(transform.position, Vector2.right, 6, 1 << 6);
         return _hit.collider != null;
     }
     private void Shoot()
@@ -57,10 +56,6 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
     }
-
-    private void Attack()
-    {
-        
-    }
+    
 
 }
