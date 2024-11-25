@@ -161,4 +161,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd4839057c5761a438bd8c49573524fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  projectileSpeed: 10
+  lifetime: 3
+  initialDamage: 10
+  maxUnitsHit: 4
+  cooldown: 5
+  damageFallOffPercentage: 20

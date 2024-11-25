@@ -7,15 +7,13 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 
-public class PlayerMovement : MonoBehaviour
+public class Player : MonoBehaviour
 {
     // Movement Variables
     public float speed = 5f;
     private Rigidbody2D rb;
     private float moveInput;
     
-    // Ability Variables (Strategy Pattern)
-    public AbilityManager abilityManager;
     
     private void Start()
     {
