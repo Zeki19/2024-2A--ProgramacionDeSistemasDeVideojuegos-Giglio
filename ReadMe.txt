@@ -9,3 +9,6 @@ Factory: Para crear unidades. Hay solo un prefab y la factory crea una unidad al
 Command: Para la comunicacion de los botones con las unidades.
 State: Los posibles estados de las unidades, searching, Attacking & cd.
 StateMachine: Como cambia dentro de esos estados. Searching state --> camina para adelante y busca un contrincante --> Al encontrarlo --> Attacking state --> Ataca (Rango o Melee, depnede la clase) --> Entra en CD state. Y dependiendo si el contrincantte muere o se aleja vuelve a Attacking state o Searching state.  
+
+Idea.
+La idea del juego es que vengan hordas de enemigos y vos como el jugador las tengas que parar. Mucho un juego no es, pero si una aplicacion de los patrones de disenio.
