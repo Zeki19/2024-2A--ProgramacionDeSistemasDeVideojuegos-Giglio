@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour, IHealth
@@ -41,6 +42,12 @@ public class PlayerHealth : MonoBehaviour, IHealth
     {
         isDead = true;
         Destroy(gameObject);
+        
+#if UNITY_EDITOR
+        EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
     public bool IsAlive()
     {
