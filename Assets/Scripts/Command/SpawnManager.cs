@@ -13,31 +13,31 @@ public class SpawnManager : MonoBehaviour
 
     public void SpawnAllyMelee()
     {
-        var command = new SpawnAllyMeleeCommand(UnitMediator.Instance);
+        var command = new SpawnAllyMeleeCommand(NpcMediator.Instance);
         _invoker.ExecuteCommand(command);
     }
 
     public void SpawnAllyRanged()
     {
-        var command = new SpawnAllyRangedCommand(UnitMediator.Instance);
+        var command = new SpawnAllyRangedCommand(NpcMediator.Instance);
         _invoker.ExecuteCommand(command);
     }
 
     public void SpawnEnemyMelee()
     {
-        var command = new SpawnEnemyMeleeCommand(UnitMediator.Instance);
+        var command = new SpawnEnemyMeleeCommand(NpcMediator.Instance);
         _invoker.ExecuteCommand(command);
     }
 
     public void SpawnEnemyRanged()
     {
-        var command = new SpawnEnemyRangedCommand(UnitMediator.Instance);
+        var command = new SpawnEnemyRangedCommand(NpcMediator.Instance);
         _invoker.ExecuteCommand(command);
     }
     
     public void SpawnWave()
     {
-        var command = new SpawnWaveCommand(UnitMediator.Instance, this);
+        var command = new SpawnWaveCommand(NpcMediator.Instance, this);
         _invoker.ExecuteCommand(command);
     }
 }

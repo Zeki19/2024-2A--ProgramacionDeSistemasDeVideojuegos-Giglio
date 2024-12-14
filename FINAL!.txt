@@ -1,0 +1,22 @@
+Pool: for the enemies*
+
+Prototype:
+
+Service Locator: ni idea*
+
+Flyweight: en las unidades*
+
+Command: para spawn de unidaddes*
+
+Abstract Factory: The abstract factory is implemented using 3 concrete factories. So when you want to create something you just call teh abstractfactroy to do it for you.
+
+State: I implemente 3 different states for the NPC/Units of my game.
+	- They will MARCH forward while searching for enemies.
+	- Attack an enemy when in ranged.
+	- Wait for the CD of the attack.
+
+State Mcahine: The states will transition between them whenever the action needed is trigger, the NPC just knows in which state it is in.
+
+Strategy: This pattern is implemented with the AttackingState, the Npc will know which IAttackStrategy it has to use depending on the class. And the AttackingState will call the Attack. While the npc delivers the hit depending on the strategy chosen by the class. (I will make this work with a Dictionary.
+
+Wrapper: Wrapper is implemented in the Health of the units and player, used by everything to deal damage no matter what it is, if it has a health it will show.

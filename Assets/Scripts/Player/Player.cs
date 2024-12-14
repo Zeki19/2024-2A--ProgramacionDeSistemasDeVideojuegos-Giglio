@@ -47,7 +47,8 @@ public class Player : MonoBehaviour
     }
     private void Shoot()
     {
-        ArrowManager.Instance.ShootArrow(transform, _hit.collider, 10);
+        var arrow = NpcMediator.Instance.GetArrow();
+        arrow.ShootArrow(transform, _hit.collider, 10);
     }
     
     private void Move()

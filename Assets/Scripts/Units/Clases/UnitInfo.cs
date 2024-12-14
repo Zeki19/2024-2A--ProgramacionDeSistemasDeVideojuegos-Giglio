@@ -11,7 +11,7 @@ using Units;
         public float movementSpeed;
         public int damage;
         public float attackCooldown;
-        public float detectionRange;
+        public float range;
 
         public Sprite classSprite;
     }

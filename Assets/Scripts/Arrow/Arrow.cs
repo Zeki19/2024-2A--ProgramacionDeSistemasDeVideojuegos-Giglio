@@ -1,28 +1,30 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
-    private Collider2D target;
+    private Collider2D _target;
     private IHealth _targetHealth;
-    private int damage;
-    private bool isFlying;
+    private int _damage;
     
-    [SerializeField] private float speed = 5f;
+    private bool _isFlying;
+    private float _speed = 5f;
     
+
     public void ShootArrow(Transform shootingPosition, Collider2D targetHit, int setDamage)
     {
         transform.position = shootingPosition.position;
-        target = targetHit;
+        _target = targetHit;
         _targetHealth = targetHit.GetComponent<IHealth>();
-        damage = setDamage;
-        isFlying = true;
+        _damage = setDamage;
+        _isFlying = true;
     }
 
     private void Update()
     {
-        if (isFlying)
+        if (_isFlying)
         {
             MoveTowardsTarget();
         }
@@ -30,15 +32,14 @@ public class Arrow : MonoBehaviour
     
     private void MoveTowardsTarget()
     {
-        if (target is null)
+        if (_target is null)
         {
             DeactivateArrow();
-            
         }
         else
         {
-            Vector2 targetPosition = target.transform.position;
-            transform.position = Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+            Vector2 targetPosition = _target.transform.position;
+            transform.position = Vector2.MoveTowards(transform.position, targetPosition, _speed * Time.deltaTime);
             
             if (Vector2.Distance(transform.position, targetPosition) < 0.1f)
             {
@@ -50,15 +51,15 @@ public class Arrow : MonoBehaviour
     
     private void HitTarget()
     {
-        _targetHealth?.TakeDamage(damage);
+        _targetHealth?.TakeDamage(_damage);
 
         DeactivateArrow();
     }
     
     private void DeactivateArrow()
     {
-        isFlying = false;
-        ArrowManager.Instance.ReturnArrow(gameObject);
+        _isFlying = false;
+        PoolManager.Instance.ReturnToPool(gameObject);
     }
 }
 

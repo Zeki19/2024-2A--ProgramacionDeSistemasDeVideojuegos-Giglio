@@ -22,6 +22,7 @@ public class AbilityManager : MonoBehaviour
 
     public GameObject fireballPrefab;
     public GameObject portalPrefab;
+    
     private GameObject _currentAbility;
     public GameObject selectionUI;
     

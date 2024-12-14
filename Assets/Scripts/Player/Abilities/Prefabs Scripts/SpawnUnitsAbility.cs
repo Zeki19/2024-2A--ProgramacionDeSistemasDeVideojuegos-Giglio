@@ -28,7 +28,7 @@ public class PortalAbility : MonoBehaviour, IAbility
         {
             UnitClass unitClass = GetRandomUnitClass();
             
-            UnitMediator.Instance.RequestUnit(unitClass, isEnemy, transform.position);
+            NpcMediator.Instance.SpawnUnit(unitClass, isEnemy, transform.position);
             
             yield return new WaitForSeconds(spawnInterval);
         }
