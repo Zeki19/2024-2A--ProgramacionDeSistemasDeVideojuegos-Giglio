@@ -58,6 +58,6 @@ public class SpawnDisplay : MonoBehaviour
         
         Enum.TryParse(unitClass, out UnitClass result);
         
-        _manager.SpawnUnit(result, isEnemy, amount);
+        _manager.SpawnUnit(result, isEnemy, amount, null);
     }
 }

@@ -50,7 +50,7 @@ public class Player : MonoBehaviour
     }
     private void Shoot()
     {
-        var arrow = ServiceLocator.Instance.GetService<IMediatorService>().GetArrow();
+        var arrow = service.GetService<IMediatorService>().GetArrow();
         arrow.ShootArrow(transform, _hit.collider, damage);
     }
     

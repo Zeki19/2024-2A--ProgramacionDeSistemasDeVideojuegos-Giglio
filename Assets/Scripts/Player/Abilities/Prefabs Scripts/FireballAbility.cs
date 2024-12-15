@@ -16,7 +16,7 @@ public class FireballAbility : MonoBehaviour, IAbility
     private int _unitsHit;
     private int _targetLayer = 6;
     private Vector2 _direction;
-    
+
     public void Activate(Transform spawnPoint, Vector2 direction, int targetLayer)
     {
         transform.position = spawnPoint.position;
@@ -63,6 +63,10 @@ public class FireballAbility : MonoBehaviour, IAbility
     {
         return cooldown;
     }
+    
 
-
+    public void Activate(Transform spawnPoint, Vector2 direction, int? targetLayer = null)
+    {
+        throw new System.NotImplementedException();
+    }
 }

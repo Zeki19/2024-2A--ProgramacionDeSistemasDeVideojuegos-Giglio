@@ -24,17 +24,15 @@ public class AbilityManager : MonoBehaviour, IAbillityService
         _currentAbility = portalPrefab;
         selectionUI.SetActive(false);
     }
-    
+
     public void UseAbility(Transform spawnPoint, Vector2 direction, int targetLayer)
     {
-        if (_currentAbility != null)
+        if (_currentAbility)
         {
             GameObject abilityInstance = Instantiate(_currentAbility);
             IAbility abilityScript = abilityInstance.GetComponent<IAbility>();
-            if (abilityScript != null)
-            {
-                abilityScript.Activate(spawnPoint, direction, targetLayer);
-            }
+            
+            abilityScript?.Activate(spawnPoint, direction, targetLayer);
         }
         else
         {

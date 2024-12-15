@@ -100,4 +100,3 @@ MonoBehaviour:
   maxUnits: 3
   isEnemy: 0
   cooldown: 10
-  spawnInterval: 0.5

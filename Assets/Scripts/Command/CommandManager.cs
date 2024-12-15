@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class CommandManager : MonoBehaviour, ICommandService
@@ -12,9 +13,9 @@ public class CommandManager : MonoBehaviour, ICommandService
         _invoker = new CommandInvoker();
     }
 
-    public void SpawnUnit(Units.UnitClass unitClass, bool isEnemy, int amount)
+    public void SpawnUnit(Units.UnitClass unitClass, bool isEnemy, int amount, [CanBeNull] Transform pos)
     {
-        var command = new SpawnUnitCommand(unitClass, isEnemy, amount);
+        var command = new SpawnUnitCommand(unitClass, isEnemy, amount, pos);
         _invoker.ExecuteCommand(command);
     }
 
