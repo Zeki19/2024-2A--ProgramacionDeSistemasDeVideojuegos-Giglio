@@ -40,7 +40,7 @@ public class AbilityManager : MonoBehaviour, IAbillityService
         }
         else
         {
-            Debug.Log("Select an Ability");
+            _command.MessageBox("Select an Ability");
         }
     }
 
