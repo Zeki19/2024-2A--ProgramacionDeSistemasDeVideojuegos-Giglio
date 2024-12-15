@@ -15,6 +15,7 @@ public class SpawnDisplay : MonoBehaviour
     [SerializeField] private TMP_Text amountNum;
     [SerializeField] private TMP_Dropdown classDropdown;
     [SerializeField] private Button spawnButton;
+    [SerializeField] private Button randButton;
     
     private ICommandService _manager;
 
@@ -29,6 +30,7 @@ public class SpawnDisplay : MonoBehaviour
         PopulateDropdown();
         
         spawnButton.onClick.AddListener(OnSpawnButtonClicked);
+        randButton.onClick.AddListener(OnSpawnRandomButtonClicked);
         
         amountSlider.onValueChanged.AddListener(value =>
         {
@@ -59,5 +61,13 @@ public class SpawnDisplay : MonoBehaviour
         Enum.TryParse(unitClass, out UnitClass result);
         
         _manager.SpawnUnit(result, isEnemy, amount, null);
+    }
+    
+    private void OnSpawnRandomButtonClicked()
+    {
+        bool isEnemy = enemyToggle.isOn;
+        int amount = (int)amountSlider.value;
+        
+        _manager.SpawnRandomUnit( isEnemy, amount);
     }
 }

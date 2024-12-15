@@ -1,12 +1,12 @@
-Pool: for the enemies*
+Pool: I used a pool for the Units and the Arrows the units shoot.
 
-Prototype:
+Prototype: I instantiate the units and most of the objects with factories.
 
-Service Locator: ni idea*
+Service Locator: I implemented a Service Locator and Installer to pass all the services I would need to reach.
 
-Flyweight: Esta aplciado en las unidades, como siempre usan los mismos SO.
+Flyweight: The units use specific SO.
 
-Command: para spawn de unidaddes*
+Command: Mainly for unit spawns but also added some for the player like heal and dmg amp.
 
 Abstract Factory: The abstract factory is implemented using concrete factories. So when you want to create something you just call teh abstractfactroy to do it for you.
 
