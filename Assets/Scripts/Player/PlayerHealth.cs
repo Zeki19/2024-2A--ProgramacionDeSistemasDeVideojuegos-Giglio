@@ -7,15 +7,15 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour, IHealth
 {
-    [SerializeField] private PlayerHealthBar _healthBar;
+    [SerializeField] private PlayerHealthBar healthBar;
     [SerializeField] public int maxHealth;
     [SerializeField] private int currentHealth;
-    private bool isDead;
+    private bool _isDead;
     private void Start()
     {
         currentHealth = maxHealth;
-        isDead = false;
-        _healthBar.SetMaxHealth(maxHealth);
+        _isDead = false;
+        healthBar.SetMaxHealth(maxHealth);
     }
 
     public int GetCurrentHealth() => currentHealth;
@@ -24,7 +24,7 @@ public class PlayerHealth : MonoBehaviour, IHealth
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        _healthBar.SetHealth(currentHealth);
+        healthBar.SetHealth(currentHealth);
         
         if (currentHealth <= 0)
         {
@@ -33,14 +33,14 @@ public class PlayerHealth : MonoBehaviour, IHealth
     }
     public void Heal(int healingAmount)
     {
-        if (!isDead)
+        if (!_isDead)
         {
             currentHealth = Mathf.Min(currentHealth + healingAmount, maxHealth);
         }
     }
     public void Die()
     {
-        isDead = true;
+        _isDead = true;
         Destroy(gameObject);
         
 #if UNITY_EDITOR
@@ -51,11 +51,11 @@ public class PlayerHealth : MonoBehaviour, IHealth
     }
     public bool IsAlive()
     {
-        return !isDead;
+        return !_isDead;
     }
     public void ResetHealth()
     {
         currentHealth = maxHealth;
-        _healthBar.SetHealth(currentHealth);
+        healthBar.SetHealth(currentHealth);
     }
 }

@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IAttackStrategy
 {
-    void Attack(NpcManager npc, Collider2D target);
+    void Attack(Unit npc, Collider2D target);
 }

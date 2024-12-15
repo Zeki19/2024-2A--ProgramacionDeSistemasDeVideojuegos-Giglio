@@ -3,6 +3,7 @@ namespace Units
     public enum UnitClass
     {
         Melee,
-        Ranged
+        Ranged,
+        Random
     }
 }

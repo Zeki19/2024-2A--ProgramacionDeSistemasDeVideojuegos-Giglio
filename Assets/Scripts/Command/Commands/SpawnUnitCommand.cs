@@ -8,6 +8,7 @@ using UnityEngine;
 public class SpawnUnitCommand : ICommand
 {
     private readonly IMediatorService _mediatorService;
+    private readonly ICommandService _commandService;
 
     private readonly UnitClass _unitClass;
     private readonly bool _isEnemy;
@@ -19,6 +20,7 @@ public class SpawnUnitCommand : ICommand
     public SpawnUnitCommand(UnitClass unitClass, bool isEnemy, int amount, [CanBeNull] Transform spawnPosition)
     {
         _mediatorService = ServiceLocator.Instance.GetService<IMediatorService>();
+        _commandService = ServiceLocator.Instance.GetService<ICommandService>();
         
         _unitClass = unitClass;
         _isEnemy = isEnemy;
@@ -48,11 +50,5 @@ public class SpawnUnitCommand : ICommand
             
             yield return new WaitForSeconds(1f);
         }
-    }
-    private UnitClass GetRandomUnitClass()
-    {
-        var unitClasses = (UnitClass[])System.Enum.GetValues(typeof(UnitClass));
-        int randomIndex = Random.Range(0, unitClasses.Length - 1);
-        return unitClasses[randomIndex];
     }
 }

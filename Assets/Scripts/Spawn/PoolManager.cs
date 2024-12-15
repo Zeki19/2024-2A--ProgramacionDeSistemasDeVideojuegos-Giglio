@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PoolManager : MonoBehaviour, IPoolService
 {
-    private Dictionary<string, Queue<GameObject>> _pools = new Dictionary<string, Queue<GameObject>>();
+    private readonly Dictionary<string, Queue<GameObject>> _pools = new Dictionary<string, Queue<GameObject>>();
     
     public void ReturnToPool(GameObject obj)
     {
@@ -23,6 +23,8 @@ public class PoolManager : MonoBehaviour, IPoolService
     {
         if (_pools.ContainsKey(key) && _pools[key].Count > 0)
         {
+
+            
             return _pools[key].Dequeue();
         }
 

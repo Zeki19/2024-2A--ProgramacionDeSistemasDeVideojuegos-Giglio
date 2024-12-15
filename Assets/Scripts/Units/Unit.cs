@@ -6,10 +6,12 @@ using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class NpcManager : MonoBehaviour
+public class Unit : MonoBehaviour
 {
     [SerializeField] private UnitInfo unitInfo;
 
+    public event Action OnFactionChanged;
+    
     private const int AllyLayer = 1 << 7;
     private const int EnemyLayer = 1 << 6;
 
@@ -39,11 +41,22 @@ public class NpcManager : MonoBehaviour
     public float Cooldown => unitInfo.attackCooldown;
     public float Range => unitInfo.range;
     public int TargetLayer => IsEnemy ? AllyLayer : EnemyLayer;
-    //bool IsEnemy { get; set; }
     public bool CanMove { get; set; }
     public bool CanAttack { get; set; }
 
-    [SerializeField] public bool IsEnemy;
+    private bool _isEnemy;
+    public bool IsEnemy
+    {
+        get => _isEnemy;
+        private set
+        {
+            if (_isEnemy != value)
+            {
+                _isEnemy = value;
+                OnFactionChanged?.Invoke();
+            }
+        }
+    }
 
     [HideInInspector] public Collider2D target;
 
@@ -51,20 +64,17 @@ public class NpcManager : MonoBehaviour
     {
         IsEnemy = enemyStatus;
         
-        UnitInfo newUnitInfo = UnitInfoFactory.GetUnitInfo(unitClass.ToString()); //Should use AbstractFactory
+        UnitInfo newUnitInfo = UnitInfoFactory.GetUnitInfo(unitClass.ToString());
         unitInfo = newUnitInfo;
-        
-        _sprite.sprite = unitInfo.classSprite;
-        _sprite.color = IsEnemy ? Color.red : Color.blue;
-        gameObject.layer = IsEnemy ? 6 : 7;
+        UpdateSprite();
+        gameObject.layer = _isEnemy ? 6 : 7;
         CanAttack = true;
         
-        gameObject.GetComponent<NpcMovement>().ResetMovement();
         AttackStrat();
         ChangeState(new MarchingState());
     }
     
-    //Utility
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
@@ -81,7 +91,20 @@ public class NpcManager : MonoBehaviour
         
         return distanceToTarget <= Range;
     }
-
+    private void UpdateSprite()
+    {
+        _sprite.sprite = unitInfo.classSprite;
+        if (_isEnemy)
+        {
+            _sprite.color = Color.red;
+            _sprite.flipX = true;
+        }
+        else
+        {
+            _sprite.color = Color.blue;
+            _sprite.flipX = false;
+        }
+    }
     private void AttackStrat()
     {
         if (unitInfo.unitClass == UnitClass.Ranged)

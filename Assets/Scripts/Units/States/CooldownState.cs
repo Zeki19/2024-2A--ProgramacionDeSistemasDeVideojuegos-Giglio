@@ -6,13 +6,13 @@ public class CooldownState : IState
 {
     private float _cooldownTimer;
     
-    public void EnterState(NpcManager npc)
+    public void EnterState(Unit npc)
     {
         _cooldownTimer = 0f;
         npc.CanMove = false;
     }
 
-    public void UpdateState(NpcManager npc)
+    public void UpdateState(Unit npc)
     {
         _cooldownTimer += Time.deltaTime;
 
@@ -28,7 +28,7 @@ public class CooldownState : IState
         }
     }
     
-    public void ExitState(NpcManager npc)
+    public void ExitState(Unit npc)
     {
         npc.CanMove = false;
         npc.CanAttack = true;

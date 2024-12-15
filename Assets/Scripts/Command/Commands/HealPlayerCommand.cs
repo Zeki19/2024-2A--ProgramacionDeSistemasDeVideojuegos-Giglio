@@ -14,6 +14,7 @@ public class HealPlayerCommand : ICommand
     }
     public void Execute()
     {
+        ServiceLocator.Instance.GetService<ICommandService>().MessageBox("Player Health set to max");
         _playerHealth.ResetHealth();
     }
 }

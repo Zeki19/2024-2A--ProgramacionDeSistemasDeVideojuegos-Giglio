@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class MarchingState : IState
 {
-    public void EnterState(NpcManager npc)
+    public void EnterState(Unit npc)
     {
         npc.CanMove = true;
     }
 
-    public void UpdateState(NpcManager npc)
+    public void UpdateState(Unit npc)
     {
         npc.target = Physics2D.OverlapCircle(npc.transform.position, npc.Range, npc.TargetLayer);
 
@@ -19,7 +19,7 @@ public class MarchingState : IState
         }
     }
 
-    public void ExitState(NpcManager npc)
+    public void ExitState(Unit npc)
     {
         npc.CanMove = false;
     }

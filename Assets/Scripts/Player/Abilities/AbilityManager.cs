@@ -6,33 +6,37 @@ using UnityEngine.Serialization;
 
 public class AbilityManager : MonoBehaviour, IAbillityService
 {
-    public GameObject fireballPrefab;
-    public GameObject portalPrefab;
-    
-    private GameObject _currentAbility;
+    private string _currentAbility = "None";
     public GameObject selectionUI;
-    
 
+    private IMediatorService _mediator;
+    private ICommandService _command;
+
+    private void Start()
+    {
+        _mediator = ServiceLocator.Instance.GetService<IMediatorService>();
+        _command = ServiceLocator.Instance.GetService<ICommandService>();
+    }
+    
     public void SetAbilityFireball()
     {
-        _currentAbility = fireballPrefab;
-        selectionUI.SetActive(false);
+        _currentAbility = "Fireball";
+        SelectedAbility();
     }
 
     public void SetAbilityPortal()
     {
-        _currentAbility = portalPrefab;
-        selectionUI.SetActive(false);
+        _currentAbility = "Portal";
+        SelectedAbility();
     }
 
     public void UseAbility(Transform spawnPoint, Vector2 direction, int targetLayer)
     {
-        if (_currentAbility)
+        if (_currentAbility != "None")
         {
-            GameObject abilityInstance = Instantiate(_currentAbility);
-            IAbility abilityScript = abilityInstance.GetComponent<IAbility>();
+            IAbility abilityInstance = _mediator.GetAbility(_currentAbility);
             
-            abilityScript?.Activate(spawnPoint, direction, targetLayer);
+            abilityInstance?.Activate(spawnPoint, direction, targetLayer);
         }
         else
         {
@@ -40,8 +44,9 @@ public class AbilityManager : MonoBehaviour, IAbillityService
         }
     }
 
-    private void HideSelectionUI()
+    private void SelectedAbility()
     {
-        selectionUI.SetActive(false);
+        _command.MessageBox("Selected " + _currentAbility + " as the Ability! Use it with 'E'");
+        //selectionUI.SetActive(false);
     }
 }

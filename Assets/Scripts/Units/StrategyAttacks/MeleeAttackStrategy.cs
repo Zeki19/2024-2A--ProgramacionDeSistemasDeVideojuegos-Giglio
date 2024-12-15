@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MeleeAttackStrategy : IAttackStrategy
 {
-    public void Attack(NpcManager npc, Collider2D target)
+    public void Attack(Unit npc, Collider2D target)
     {
         var targetHealth = target.GetComponent<IHealth>();
         if (targetHealth != null)

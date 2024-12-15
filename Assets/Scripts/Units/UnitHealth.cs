@@ -4,9 +4,9 @@ using UnityEngine;
 using Units;
 using UnityEngine.Serialization;
 
-public class NpcHealth : MonoBehaviour, IHealth
+public class UnitHealth : MonoBehaviour, IHealth
 {
-    private NpcManager _npc;
+    private Unit _npc;
     
     [SerializeField] private HealthBar healthBar;
     [SerializeField] public GameObject canvasHealthBar;
@@ -19,7 +19,7 @@ public class NpcHealth : MonoBehaviour, IHealth
     
     private void Awake()
     {
-        _npc = GetComponent<NpcManager>();
+        _npc = GetComponent<Unit>();
         _serviceLocator = ServiceLocator.Instance;
         _poolService = _serviceLocator.GetService<IPoolService>();
     }

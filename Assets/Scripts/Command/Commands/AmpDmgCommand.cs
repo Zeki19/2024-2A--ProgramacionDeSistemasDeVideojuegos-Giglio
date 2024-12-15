@@ -12,6 +12,7 @@ public class AmpDmgCommand : ICommand
     }
     public void Execute()
     {
-        _player.damage = 100;
+        ServiceLocator.Instance.GetService<ICommandService>().MessageBox("Player Dmg set to KILL");
+        _player.damage = 1000;
     }
 }

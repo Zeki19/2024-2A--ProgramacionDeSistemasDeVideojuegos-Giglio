@@ -2,24 +2,51 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AbilityFactory : MonoBehaviour
+public class AbilityFactory : MonoBehaviour, IFactory
 {
-    private readonly Dictionary<string, IAbility> _abilities = new Dictionary<string, IAbility>();
-
-    public AbilityFactory()
+    [Header("Ability Prefabs")]
+    [SerializeField] private List<AbilityEntry> abilities;
+    
+    private Dictionary<string, GameObject> _abilityDictionary;
+    
+    private void Awake()
     {
-        _abilities.Add("Fireball", new FireballAbility());
-        _abilities.Add("Portal", new PortalAbility());
+        InitializeAbilityDictionary();
+    }
+    private void InitializeAbilityDictionary()
+    {
+        _abilityDictionary = new Dictionary<string, GameObject>();
+        
+        foreach (var entry in abilities)
+        {
+            if (!_abilityDictionary.ContainsKey(entry.abilityName))
+            {
+                _abilityDictionary.Add(entry.abilityName, entry.prefab);
+            }
+            else
+            {
+                Debug.LogWarning($"Duplicate ability name found: {entry.abilityName}");
+            }
+        }
     }
 
-    public IAbility GetAbility(string abilityName)
+    public GameObject Create(string abilityName)
     {
-        if (_abilities.TryGetValue(abilityName, out IAbility ability))
+        if (_abilityDictionary.TryGetValue(abilityName, out GameObject prefab))
         {
+            GameObject ability = Instantiate(prefab);
+            ability.SetActive(false);
             return ability;
         }
-
-        Debug.LogWarning($"Ability '{abilityName}' not found.");
+        
         return null;
     }
 }
+
+[System.Serializable]
+public class AbilityEntry
+{
+    public string abilityName;
+    public GameObject prefab;
+}
+

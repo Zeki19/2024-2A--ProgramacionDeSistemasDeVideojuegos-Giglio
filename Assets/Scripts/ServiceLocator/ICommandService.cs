@@ -6,5 +6,5 @@ using UnityEngine;
 public interface ICommandService
 {
     public void SpawnUnit(Units.UnitClass unitClass, bool isEnemy, int amount, [CanBeNull] Transform pos);
-    public void SpawnRandomUnit(bool isEnemy, int amount);
+    public void MessageBox(string message);
 }

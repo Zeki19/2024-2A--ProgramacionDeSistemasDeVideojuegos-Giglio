@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
+using TMPro;
 using Units;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ public class CommandManager : MonoBehaviour, ICommandService
 {
     private CommandInvoker _invoker;
     [SerializeField] private GameObject Player;
+    [SerializeField] private TMP_Text board;
 
     private void Awake()
     {
@@ -33,10 +35,9 @@ public class CommandManager : MonoBehaviour, ICommandService
         _invoker.ExecuteCommand(command);
     }
 
-    public void SpawnRandomUnit(bool isEnemy, int amount)
+    public void MessageBox(string message)
     {
-        var command = new SpawnRandomUnitCommand(isEnemy, amount);
-        _invoker.ExecuteCommand(command); 
+        var command = new AlertTextCommand(board, message);
+        _invoker.ExecuteCommand(command);
     }
-    
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class AttackingState : IState
 {
-    public void EnterState(NpcManager npc)
+    public void EnterState(Unit npc)
     {
         npc.CanMove = false;
 
@@ -14,7 +14,7 @@ public class AttackingState : IState
         npc.PerformAttack();
     }
 
-    public void UpdateState(NpcManager npc)
+    public void UpdateState(Unit npc)
     {
         if (!npc.CanAttack)
         {
@@ -22,7 +22,7 @@ public class AttackingState : IState
         }
     }
 
-    public void ExitState(NpcManager npc)
+    public void ExitState(Unit npc)
     {
         npc.CanAttack = false;
     }

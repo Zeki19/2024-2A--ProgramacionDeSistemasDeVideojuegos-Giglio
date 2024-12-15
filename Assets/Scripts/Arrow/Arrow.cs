@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
+    [SerializeField] private SpriteRenderer sprite;
     private Collider2D _target;
     private IHealth _targetHealth;
     private int _damage;
@@ -20,6 +21,15 @@ public class Arrow : MonoBehaviour
         _targetHealth = targetHit.GetComponent<IHealth>();
         _damage = setDamage;
         _isFlying = true;
+        
+        if (targetHit.transform.position.x < shootingPosition.position.x)
+        {
+            sprite.flipX = true;
+        }
+        else
+        {
+            sprite.flipX = false;
+        }
     }
 
     private void Update()
