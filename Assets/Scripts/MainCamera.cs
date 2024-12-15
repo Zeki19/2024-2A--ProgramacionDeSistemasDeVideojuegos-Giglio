@@ -6,7 +6,7 @@ public class MainCamera : MonoBehaviour
 {
     public Transform player;
     public Vector3 offset;
-    public float smoothSpeed = 0.125f;
+    public float smoothSpeed = 1f;
 
     private void LateUpdate()
     {
