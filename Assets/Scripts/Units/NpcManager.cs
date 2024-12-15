@@ -22,10 +22,6 @@ public class NpcManager : MonoBehaviour
     {
         _sprite = GetComponent<SpriteRenderer>();
     }
-    private void OnEnable()
-    {
-        
-    }
     private void Update()
     {
         _currentState?.UpdateState(this);

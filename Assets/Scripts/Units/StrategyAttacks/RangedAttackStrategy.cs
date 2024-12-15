@@ -8,7 +8,7 @@ public class RangedAttackStrategy : IAttackStrategy
     
     public void Attack(NpcManager npc, Collider2D target)
     {
-        var arrow = NpcMediator.Instance.GetArrow();
+        var arrow = ServiceLocator.Instance.GetService<IMediatorService>().GetArrow();
         arrow.ShootArrow(npc.transform, target, npc.Damage);
     }
 }

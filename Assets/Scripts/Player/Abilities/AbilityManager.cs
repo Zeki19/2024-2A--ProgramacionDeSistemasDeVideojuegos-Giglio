@@ -4,22 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class AbilityManager : MonoBehaviour
+public class AbilityManager : MonoBehaviour, IAbillityService
 {
-    public static AbilityManager Instance { get; private set; }
-
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            Instance = this;
-        }
-    }
-
     public GameObject fireballPrefab;
     public GameObject portalPrefab;
     

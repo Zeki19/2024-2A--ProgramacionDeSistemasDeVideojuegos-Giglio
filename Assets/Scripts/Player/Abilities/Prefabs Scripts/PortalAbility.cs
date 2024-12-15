@@ -12,30 +12,25 @@ public class PortalAbility : MonoBehaviour, IAbility
     public bool isEnemy = false;
     public float cooldown = 10f;
     public float spawnInterval = 0.5f;
-    
+    private IMediatorService _mediator;
+
+    private void Start()
+    {
+        _mediator = ServiceLocator.Instance.GetService<IMediatorService>();
+    }
+
     public void Activate(Transform spawnPoint, Vector2 direction, int targetLayer)
     {
         transform.position = spawnPoint.position + new Vector3(-1.5f , 0 , 0);
-        
-        int unitsToSpawn = Random.Range(1, maxUnits + 1);
-        
-        StartCoroutine(SpawnUnits(unitsToSpawn));
-    }
-    
-    private IEnumerator SpawnUnits(int unitsToSpawn)
-    {
-        for (int i = 0; i < unitsToSpawn; i++)
+        int rand = Random.Range(0, maxUnits);
+
+        for (int i = 0; i < rand; i++)
         {
-            UnitClass unitClass = GetRandomUnitClass();
-            
-            NpcMediator.Instance.SpawnUnit(unitClass, isEnemy, transform.position);
-            
-            yield return new WaitForSeconds(spawnInterval);
+            _mediator.SpawnUnit(GetRandomUnitClass(), isEnemy, transform.position);
         }
         
-        Destroy(gameObject);
     }
-
+    
     public float GetCooldown()
     {
         return cooldown;

@@ -13,10 +13,15 @@ public class NpcHealth : MonoBehaviour, IHealth
     
     [SerializeField] private int currentHealth; 
     private bool _isDead;
+
+    private ServiceLocator _serviceLocator;
+    private IPoolService _poolService;
     
     private void Awake()
     {
         _npc = GetComponent<NpcManager>();
+        _serviceLocator = ServiceLocator.Instance;
+        _poolService = _serviceLocator.GetService<IPoolService>();
     }
     private void OnEnable()
     {
@@ -47,7 +52,7 @@ public class NpcHealth : MonoBehaviour, IHealth
     public void Die()
     {
         _isDead = true;
-        PoolManager.Instance.ReturnToPool(gameObject);
+        _poolService?.ReturnToPool(gameObject);
         healthBar.HideHealthBar();
     }
 

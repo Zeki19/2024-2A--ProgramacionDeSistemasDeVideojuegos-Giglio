@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ArrowFactory : MonoBehaviour, IFactory
 {
+    [Header("Arrow Prefab")]
     [SerializeField] private GameObject prefab;
     
     public GameObject Create()

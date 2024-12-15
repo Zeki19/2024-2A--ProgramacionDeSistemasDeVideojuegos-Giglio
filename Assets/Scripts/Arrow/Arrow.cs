@@ -59,7 +59,7 @@ public class Arrow : MonoBehaviour
     private void DeactivateArrow()
     {
         _isFlying = false;
-        PoolManager.Instance.ReturnToPool(gameObject);
+        ServiceLocator.Instance.GetService<IPoolService>().ReturnToPool(gameObject);
     }
 }
 

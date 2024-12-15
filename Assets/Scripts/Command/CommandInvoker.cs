@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class CommandInvoker
 {
-    private readonly Queue<ISpawnCommand> _commandQueue = new Queue<ISpawnCommand>();
+    private readonly Queue<ICommand> _commandQueue = new Queue<ICommand>();
 
-    public void ExecuteCommand(ISpawnCommand command)
+    public void ExecuteCommand(ICommand command)
     {
         command.Execute();
         _commandQueue.Enqueue(command);

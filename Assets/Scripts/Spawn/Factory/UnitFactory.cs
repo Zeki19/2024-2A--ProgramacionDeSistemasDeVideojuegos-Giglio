@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class UnitFactory : MonoBehaviour, IFactory
 {
+    [Header("Unit Prefab")]
     public GameObject prefab;
     
     public GameObject Create()

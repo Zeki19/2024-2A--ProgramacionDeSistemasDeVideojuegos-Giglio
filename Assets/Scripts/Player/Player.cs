@@ -13,11 +13,14 @@ public class Player : MonoBehaviour
     public float speed = 5f;
     private Rigidbody2D rb;
     private float moveInput;
+    public int damage;
+    private ServiceLocator service;
     
     
     private void Start()
     {
         rb = GetComponent <Rigidbody2D>();
+        service = ServiceLocator.Instance;
     }
 
     void Update()
@@ -27,7 +30,7 @@ public class Player : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.E))
         {
-            AbilityManager.Instance.UseAbility(transform, Vector2.right, LayerMask.NameToLayer("Enemy"));
+            service.GetService<IAbillityService>().UseAbility(transform, Vector2.right, LayerMask.NameToLayer("Enemy"));
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
@@ -47,8 +50,8 @@ public class Player : MonoBehaviour
     }
     private void Shoot()
     {
-        var arrow = NpcMediator.Instance.GetArrow();
-        arrow.ShootArrow(transform, _hit.collider, 10);
+        var arrow = ServiceLocator.Instance.GetService<IMediatorService>().GetArrow();
+        arrow.ShootArrow(transform, _hit.collider, damage);
     }
     
     private void Move()

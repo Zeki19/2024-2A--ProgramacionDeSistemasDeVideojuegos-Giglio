@@ -334,7 +334,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e5f668e369c3a054faaf01b6add11cc2, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -342,7 +342,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!61 &1247377836511570564
@@ -457,4 +457,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitInfo: {fileID: 11400000, guid: 56a8e82f5701465498f32e079c9cecb6, type: 2}
+  IsEnemy: 0
   target: {fileID: 0}

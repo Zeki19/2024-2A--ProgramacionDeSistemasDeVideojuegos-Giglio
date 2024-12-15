@@ -8,7 +8,7 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour, IHealth
 {
     [SerializeField] private PlayerHealthBar _healthBar;
-    [SerializeField] private int maxHealth;
+    [SerializeField] public int maxHealth;
     [SerializeField] private int currentHealth;
     private bool isDead;
     private void Start()
@@ -55,6 +55,7 @@ public class PlayerHealth : MonoBehaviour, IHealth
     }
     public void ResetHealth()
     {
-        throw new System.NotImplementedException();
+        currentHealth = maxHealth;
+        _healthBar.SetHealth(currentHealth);
     }
 }
