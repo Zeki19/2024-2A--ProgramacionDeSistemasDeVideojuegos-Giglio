@@ -25,7 +25,8 @@ public class ParallaxController : MonoBehaviour
                 parallax.Move(deltaMovement);
             }
         }
-        
+
+        transform.position = new Vector3(camTransform.position.x, transform.position.y, transform.position.z);
         _previousPosition = camTransform.position;
     }
 }
